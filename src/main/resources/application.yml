@@ -1,0 +1,28 @@
+spring:
+  graphql:
+    graphiql:
+      enabled: true
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      username: root
+      password: abc123456
+      database: demo
+      field-naming-strategy: org.springframework.data.mapping.model.SnakeCaseFieldNamingStrategy
+      auto-index-creation: true
+      authentication-database: admin
+      uuid-representation: standard
+
+server:
+  port: 8080
+  address: localhost
+
+logging:
+  level:
+    org.springframework.data.mongodb.core.convert: DEBUG

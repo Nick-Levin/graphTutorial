@@ -1,0 +1,78 @@
+type PersonResponse {
+    uuid: ID
+    firstname: String
+    lastname: String
+    gender: String
+    houses: [HouseResponse]
+    cars: [CarResponse]
+}
+
+type HouseResponse {
+    uuid: ID
+    address: AddressResponse
+    value: Float
+    valueCurrency: String
+    owner: PersonResponse
+}
+
+type CarResponse {
+    uuid: ID
+    manufacturer: String
+    model: String
+    color: String
+    serialNumber: String
+    owner: PersonResponse
+}
+
+type AddressResponse {
+    country: String
+    city: String
+    street: String
+    houseNo: String
+}
+
+input AddressRequest {
+    country: String
+    city: String
+    street: String
+    houseNo: String
+}
+
+input PersonRequest {
+    uuid: ID
+    firstname: String
+    lastname: String
+    gender: String
+    houses: [HouseRequest]
+    cars: [CarRequest]
+}
+
+input HouseRequest {
+    uuid: ID
+    address: AddressRequest
+    value: Float
+    valueCurrency: String
+    owner: PersonRequest
+}
+
+input CarRequest {
+    uuid: ID
+    manufacturer: String
+    model: String
+    color: String
+    serialNumber: String
+    owner: PersonRequest
+}
+
+type Mutation {
+    createPerson(person: PersonRequest): PersonResponse
+    createHouse(house: HouseRequest): HouseResponse
+    createCar(car: CarRequest): CarResponse
+    addCarToPerson(carUuid: String, personUuid: String): PersonResponse
+}
+
+type Query {
+    getAllPeople: [PersonResponse]
+    getAllHouses: [HouseResponse]
+    getAllCars: [CarResponse]
+}
